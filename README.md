@@ -47,3 +47,4 @@ npm run ios
 ## 参考
 
 * [维基百科-八字](https://zh.wikipedia.org/zh-hk/%E5%85%AB%E5%AD%97)
+* [window系统下如何在react native安卓开发中用夜神模拟器](https://www.yeshen.com/faqs/ByJvFeXeZ)
