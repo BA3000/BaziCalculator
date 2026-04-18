@@ -1,0 +1,111 @@
+<!-- 八字排盘 — 信息输入页 -->
+<view class="container">
+
+  <!-- Header -->
+  <view class="header">
+    <text class="header-title">八字排盘</text>
+    <text class="header-subtitle">请填写出生信息</text>
+  </view>
+
+  <!-- Form card -->
+  <view class="card">
+
+    <!-- Birthday date picker -->
+    <view class="form-section">
+      <text class="section-label">出生日期</text>
+      <picker
+        mode="date"
+        value="{{birthday}}"
+        start="1900-01-01"
+        end="2100-12-31"
+        bindchange="onBirthdayChange"
+      >
+        <view class="picker-row">
+          <text class="picker-value">{{birthday || '请选择出生日期'}}</text>
+          <text class="picker-arrow">›</text>
+        </view>
+      </picker>
+    </view>
+
+    <!-- Birth time picker -->
+    <view class="form-section">
+      <text class="section-label">出生时间</text>
+      <picker
+        mode="time"
+        value="{{birthTime}}"
+        bindchange="onBirthTimeChange"
+      >
+        <view class="picker-row">
+          <text class="picker-value">{{birthTime || '请选择出生时间'}}</text>
+          <text class="picker-arrow">›</text>
+        </view>
+      </picker>
+      <text class="hint-text">※ 如不知道具体时间，可选择 00:00（结果仅供参考）</text>
+    </view>
+
+    <!-- Birth place picker -->
+    <view class="form-section">
+      <text class="section-label">出生地点</text>
+      <picker
+        mode="selector"
+        range="{{birthPlaceNames}}"
+        value="{{birthPlaceIndex}}"
+        bindchange="onBirthPlaceChange"
+      >
+        <view class="picker-row">
+          <text class="picker-value">{{birthPlaceNames[birthPlaceIndex] || '请选择出生地点'}}</text>
+          <text class="picker-arrow">›</text>
+        </view>
+      </picker>
+    </view>
+
+    <!-- Custom UTC offset (shown only when "其他/自定义" is selected) -->
+    <view class="form-section" wx:if="{{showCustomOffset}}">
+      <text class="section-label">UTC 时区偏移（小时）</text>
+      <view class="picker-row">
+        <input
+          class="offset-input"
+          type="number"
+          value="{{customUtcOffset}}"
+          placeholder="例：8（东八区），-5（美东）"
+          bindinput="onCustomOffsetInput"
+        />
+      </view>
+      <text class="hint-text">※ 东区为正数，西区为负数</text>
+    </view>
+
+    <!-- Gender selector (for reference in fortune reading) -->
+    <view class="form-section">
+      <text class="section-label">性别</text>
+      <view class="gender-row">
+        <view
+          class="gender-btn {{gender === 'male' ? 'gender-btn--active' : ''}}"
+          bindtap="selectMale"
+        >
+          <text>男</text>
+        </view>
+        <view
+          class="gender-btn {{gender === 'female' ? 'gender-btn--active' : ''}}"
+          bindtap="selectFemale"
+        >
+          <text>女</text>
+        </view>
+      </view>
+    </view>
+
+  </view>
+
+  <!-- Submit button -->
+  <view class="btn-wrapper">
+    <button class="submit-btn" bindtap="onSubmit">排 盘</button>
+  </view>
+
+  <!-- Tips -->
+  <view class="tips-card">
+    <text class="tips-title">📖 关于八字</text>
+    <text class="tips-body">
+      八字，又称"四柱命理"，以出生的年、月、日、时各取天干地支，合成"四柱八字"，是中华传统命理学的重要组成部分。
+    </text>
+  </view>
+
+</view>

@@ -1,0 +1,153 @@
+<!-- 八字排盘 — 结果展示页 -->
+<view class="container">
+
+  <!-- Birth info summary -->
+  <view class="info-bar">
+    <text class="info-text">{{birthInfo}}</text>
+  </view>
+
+  <!-- Four Pillars table -->
+  <view class="card pillars-card">
+    <view class="card-title">
+      <text>四柱八字</text>
+    </view>
+
+    <view class="pillars-table">
+      <!-- Column headers -->
+      <view class="pillar-col">
+        <text class="pillar-header">时柱</text>
+        <text class="pillar-stem {{hourStemClass}}">{{bazi.hour.stem}}</text>
+        <text class="pillar-branch">{{bazi.hour.branch}}</text>
+        <text class="pillar-nayin">{{bazi.hour.nayin}}</text>
+        <text class="pillar-element">{{bazi.hour.element}}</text>
+        <text class="pillar-zodiac-label">{{bazi.hour.periodName}}</text>
+      </view>
+
+      <view class="pillar-col pillar-col--day">
+        <text class="pillar-header">日柱（命主）</text>
+        <text class="pillar-stem {{dayStemClass}}">{{bazi.day.stem}}</text>
+        <text class="pillar-branch">{{bazi.day.branch}}</text>
+        <text class="pillar-nayin">{{bazi.day.nayin}}</text>
+        <text class="pillar-element">{{bazi.day.element}}</text>
+        <text class="pillar-zodiac-label"> </text>
+      </view>
+
+      <view class="pillar-col">
+        <text class="pillar-header">月柱</text>
+        <text class="pillar-stem {{monthStemClass}}">{{bazi.month.stem}}</text>
+        <text class="pillar-branch">{{bazi.month.branch}}</text>
+        <text class="pillar-nayin">{{bazi.month.nayin}}</text>
+        <text class="pillar-element">{{bazi.month.element}}</text>
+        <text class="pillar-zodiac-label"> </text>
+      </view>
+
+      <view class="pillar-col">
+        <text class="pillar-header">年柱</text>
+        <text class="pillar-stem {{yearStemClass}}">{{bazi.year.stem}}</text>
+        <text class="pillar-branch">{{bazi.year.branch}}</text>
+        <text class="pillar-nayin">{{bazi.year.nayin}}</text>
+        <text class="pillar-element">{{bazi.year.element}}</text>
+        <text class="pillar-zodiac-label">{{bazi.year.zodiac}}年</text>
+      </view>
+    </view>
+
+    <!-- Yin-Yang row -->
+    <view class="yy-row">
+      <view class="yy-cell"><text class="yy-tag {{bazi.hour.yinYang === '阳' ? 'yang' : 'yin'}}">{{bazi.hour.yinYang}}</text></view>
+      <view class="yy-cell"><text class="yy-tag {{bazi.day.yinYang === '阳' ? 'yang' : 'yin'}}">{{bazi.day.yinYang}}</text></view>
+      <view class="yy-cell"><text class="yy-tag {{bazi.month.yinYang === '阳' ? 'yang' : 'yin'}}">{{bazi.month.yinYang}}</text></view>
+      <view class="yy-cell"><text class="yy-tag {{bazi.year.yinYang === '阳' ? 'yang' : 'yin'}}">{{bazi.year.yinYang}}</text></view>
+    </view>
+  </view>
+
+  <!-- Five Elements analysis -->
+  <view class="card">
+    <view class="card-title">
+      <text>五行分析</text>
+    </view>
+    <view class="elements-grid">
+      <view class="element-item {{fiveElements.木 > 0 ? 'element-item--active' : ''}}">
+        <text class="element-char wood">木</text>
+        <text class="element-count">×{{fiveElements.木}}</text>
+      </view>
+      <view class="element-item {{fiveElements.火 > 0 ? 'element-item--active' : ''}}">
+        <text class="element-char fire">火</text>
+        <text class="element-count">×{{fiveElements.火}}</text>
+      </view>
+      <view class="element-item {{fiveElements.土 > 0 ? 'element-item--active' : ''}}">
+        <text class="element-char earth">土</text>
+        <text class="element-count">×{{fiveElements.土}}</text>
+      </view>
+      <view class="element-item {{fiveElements.金 > 0 ? 'element-item--active' : ''}}">
+        <text class="element-char metal">金</text>
+        <text class="element-count">×{{fiveElements.金}}</text>
+      </view>
+      <view class="element-item {{fiveElements.水 > 0 ? 'element-item--active' : ''}}">
+        <text class="element-char water">水</text>
+        <text class="element-count">×{{fiveElements.水}}</text>
+      </view>
+    </view>
+    <view class="dominant-row">
+      <text class="dominant-label">最旺五行：</text>
+      <text class="dominant-value">{{dominantElement}}</text>
+    </view>
+  </view>
+
+  <!-- Day master info -->
+  <view class="card">
+    <view class="card-title">
+      <text>日主信息</text>
+    </view>
+    <view class="daymaster-info">
+      <view class="dm-row">
+        <text class="dm-label">日主天干</text>
+        <text class="dm-value">{{bazi.day.stem}}（{{bazi.day.yinYang}}{{bazi.day.element}}）</text>
+      </view>
+      <view class="dm-row">
+        <text class="dm-label">日支地支</text>
+        <text class="dm-value">{{bazi.day.branch}}（{{bazi.day.element}}）</text>
+      </view>
+      <view class="dm-row">
+        <text class="dm-label">纳音五行</text>
+        <text class="dm-value">{{bazi.day.nayin}}</text>
+      </view>
+      <view class="dm-row">
+        <text class="dm-label">生肖</text>
+        <text class="dm-value">{{bazi.year.zodiac}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- Heavenly Stems & Earthly Branches reference -->
+  <view class="card">
+    <view class="card-title">
+      <text>天干地支对照</text>
+    </view>
+    <view class="ref-section">
+      <text class="ref-subtitle">天干（10）</text>
+      <view class="ref-row">
+        <view class="ref-item" wx:for="{{stems}}" wx:key="index">
+          <text class="ref-char">{{item.char}}</text>
+          <text class="ref-detail">{{item.element}}</text>
+          <text class="ref-detail">{{item.yy}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="ref-section">
+      <text class="ref-subtitle">地支（12）</text>
+      <view class="ref-row">
+        <view class="ref-item" wx:for="{{branches}}" wx:key="index">
+          <text class="ref-char">{{item.char}}</text>
+          <text class="ref-detail">{{item.zodiac}}</text>
+          <text class="ref-detail">{{item.element}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- Back button -->
+  <view class="btn-wrapper">
+    <button class="back-btn" bindtap="goBack">重新排盘</button>
+  </view>
+
+</view>
