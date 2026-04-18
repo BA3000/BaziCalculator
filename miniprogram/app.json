@@ -1,0 +1,15 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/result/result"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#8B0000",
+    "navigationBarTitleText": "八字排盘",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#FDF5E6"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

@@ -1,0 +1,4 @@
+{
+  "desc": "配置本文件可以被 wx.navigateToMiniProgram 打开",
+  "rules": []
+}

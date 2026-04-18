@@ -1,0 +1,12 @@
+/* Global styles */
+page {
+  background-color: #FDF5E6;
+  font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+  color: #333;
+}
+
+.container {
+  padding: 20rpx 30rpx;
+  min-height: 100vh;
+  box-sizing: border-box;
+}

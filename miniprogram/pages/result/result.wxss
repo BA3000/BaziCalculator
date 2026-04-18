@@ -1,0 +1,307 @@
+/* pages/result/result.wxss */
+
+.container {
+  padding: 20rpx 30rpx 60rpx;
+  background: #FDF5E6;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+/* ─── Info bar ───────────────────────────────────────────── */
+.info-bar {
+  background: #8B0000;
+  border-radius: 16rpx;
+  padding: 20rpx 30rpx;
+  margin-bottom: 30rpx;
+  text-align: center;
+}
+
+.info-text {
+  color: #FFD700;
+  font-size: 26rpx;
+  line-height: 1.8;
+}
+
+/* ─── Card ───────────────────────────────────────────────── */
+.card {
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  box-shadow: 0 4rpx 24rpx rgba(139, 0, 0, 0.08);
+  margin-bottom: 30rpx;
+}
+
+.card-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #8B0000;
+  margin-bottom: 24rpx;
+  padding-bottom: 16rpx;
+  border-bottom: 2rpx solid #F5EDD6;
+  letter-spacing: 4rpx;
+}
+
+/* ─── Pillars table ──────────────────────────────────────── */
+.pillars-card {}
+
+.pillars-table {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20rpx;
+}
+
+.pillar-col {
+  flex: 1;
+  text-align: center;
+  padding: 10rpx 4rpx;
+  border-right: 1rpx solid #F5EDD6;
+}
+
+.pillar-col:last-child {
+  border-right: none;
+}
+
+.pillar-col--day {
+  background: #FFF9E6;
+  border-radius: 12rpx;
+}
+
+.pillar-header {
+  display: block;
+  font-size: 22rpx;
+  color: #999;
+  margin-bottom: 14rpx;
+  letter-spacing: 1rpx;
+}
+
+.pillar-stem {
+  display: block;
+  font-size: 64rpx;
+  font-weight: bold;
+  line-height: 1.1;
+  margin-bottom: 8rpx;
+}
+
+/* Stem colors by element */
+.stem-wood  { color: #2E7D32; }
+.stem-fire  { color: #C62828; }
+.stem-earth { color: #A1621E; }
+.stem-metal { color: #6A6A6A; }
+.stem-water { color: #1565C0; }
+
+.pillar-branch {
+  display: block;
+  font-size: 52rpx;
+  color: #333;
+  font-weight: 600;
+  margin-bottom: 8rpx;
+}
+
+.pillar-nayin {
+  display: block;
+  font-size: 20rpx;
+  color: #888;
+  margin-bottom: 6rpx;
+  line-height: 1.4;
+}
+
+.pillar-element {
+  display: block;
+  font-size: 22rpx;
+  color: #8B0000;
+  font-weight: 600;
+  margin-bottom: 6rpx;
+}
+
+.pillar-zodiac-label {
+  display: block;
+  font-size: 22rpx;
+  color: #999;
+}
+
+/* ─── Yin-Yang row ───────────────────────────────────────── */
+.yy-row {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1rpx solid #F5EDD6;
+  padding-top: 16rpx;
+}
+
+.yy-cell {
+  flex: 1;
+  text-align: center;
+}
+
+.yy-tag {
+  display: inline-block;
+  padding: 4rpx 14rpx;
+  border-radius: 20rpx;
+  font-size: 22rpx;
+  font-weight: 600;
+}
+
+.yang {
+  background: #FFF3E0;
+  color: #E65100;
+  border: 1rpx solid #FFB74D;
+}
+
+.yin {
+  background: #EDE7F6;
+  color: #4527A0;
+  border: 1rpx solid #B39DDB;
+}
+
+/* ─── Five Elements ──────────────────────────────────────── */
+.elements-grid {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 24rpx;
+}
+
+.element-item {
+  flex: 1;
+  text-align: center;
+  padding: 20rpx 0;
+  border-radius: 12rpx;
+  border: 1rpx solid #F5EDD6;
+  margin: 0 6rpx;
+  opacity: 0.45;
+}
+
+.element-item--active {
+  opacity: 1;
+  border-color: transparent;
+  box-shadow: 0 2rpx 12rpx rgba(0,0,0,0.1);
+}
+
+.element-char {
+  display: block;
+  font-size: 48rpx;
+  font-weight: bold;
+  margin-bottom: 6rpx;
+}
+
+.wood  { color: #2E7D32; }
+.fire  { color: #C62828; }
+.earth { color: #A1621E; }
+.metal { color: #6A6A6A; }
+.water { color: #1565C0; }
+
+.element-count {
+  display: block;
+  font-size: 24rpx;
+  color: #666;
+}
+
+.dominant-row {
+  display: flex;
+  align-items: center;
+  background: #FDF5E6;
+  border-radius: 12rpx;
+  padding: 16rpx 20rpx;
+}
+
+.dominant-label {
+  font-size: 28rpx;
+  color: #666;
+  margin-right: 10rpx;
+}
+
+.dominant-value {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #8B0000;
+}
+
+/* ─── Day master info ────────────────────────────────────── */
+.daymaster-info {}
+
+.dm-row {
+  display: flex;
+  padding: 16rpx 0;
+  border-bottom: 1rpx solid #F5EDD6;
+  align-items: center;
+}
+
+.dm-row:last-child {
+  border-bottom: none;
+}
+
+.dm-label {
+  font-size: 26rpx;
+  color: #999;
+  width: 160rpx;
+  flex-shrink: 0;
+}
+
+.dm-value {
+  font-size: 28rpx;
+  color: #333;
+  font-weight: 500;
+}
+
+/* ─── Reference table ────────────────────────────────────── */
+.ref-section {
+  margin-bottom: 20rpx;
+}
+
+.ref-subtitle {
+  display: block;
+  font-size: 26rpx;
+  color: #8B0000;
+  margin-bottom: 16rpx;
+  font-weight: 600;
+}
+
+.ref-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12rpx;
+}
+
+.ref-item {
+  width: calc((100% - 60rpx) / 6);
+  text-align: center;
+  background: #FDF5E6;
+  border-radius: 10rpx;
+  padding: 12rpx 4rpx;
+  border: 1rpx solid #F0E0C0;
+}
+
+.ref-char {
+  display: block;
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 4rpx;
+}
+
+.ref-detail {
+  display: block;
+  font-size: 20rpx;
+  color: #888;
+  line-height: 1.4;
+}
+
+/* ─── Back button ────────────────────────────────────────── */
+.btn-wrapper {
+  margin-top: 10rpx;
+}
+
+.back-btn {
+  width: 100%;
+  height: 88rpx;
+  line-height: 88rpx;
+  font-size: 32rpx;
+  letter-spacing: 4rpx;
+  background: #fff;
+  color: #8B0000;
+  border-radius: 44rpx;
+  border: 2rpx solid #8B0000;
+  box-shadow: none;
+}
+
+.back-btn::after {
+  border: none;
+}

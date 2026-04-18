@@ -1,0 +1,170 @@
+/* pages/index/index.wxss */
+
+.container {
+  padding: 30rpx 30rpx 60rpx;
+  background: #FDF5E6;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+/* ─── Header ─────────────────────────────────────────────── */
+.header {
+  text-align: center;
+  margin-bottom: 40rpx;
+  padding: 40rpx 0 20rpx;
+}
+
+.header-title {
+  display: block;
+  font-size: 56rpx;
+  font-weight: bold;
+  color: #8B0000;
+  letter-spacing: 8rpx;
+}
+
+.header-subtitle {
+  display: block;
+  margin-top: 12rpx;
+  font-size: 28rpx;
+  color: #999;
+  letter-spacing: 4rpx;
+}
+
+/* ─── Card ───────────────────────────────────────────────── */
+.card {
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 10rpx 30rpx 30rpx;
+  box-shadow: 0 4rpx 24rpx rgba(139, 0, 0, 0.08);
+  margin-bottom: 40rpx;
+}
+
+/* ─── Form sections ──────────────────────────────────────── */
+.form-section {
+  padding: 28rpx 0;
+  border-bottom: 1rpx solid #F5EDD6;
+}
+
+.form-section:last-child {
+  border-bottom: none;
+}
+
+.section-label {
+  display: block;
+  font-size: 28rpx;
+  color: #8B0000;
+  font-weight: 600;
+  margin-bottom: 16rpx;
+  letter-spacing: 2rpx;
+}
+
+/* ─── Picker rows ────────────────────────────────────────── */
+.picker-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #FDF5E6;
+  border-radius: 12rpx;
+  padding: 22rpx 24rpx;
+  border: 1rpx solid #E8D8A0;
+}
+
+.picker-value {
+  font-size: 30rpx;
+  color: #333;
+  flex: 1;
+}
+
+.picker-arrow {
+  font-size: 40rpx;
+  color: #8B0000;
+  font-weight: 300;
+  margin-left: 10rpx;
+}
+
+.hint-text {
+  display: block;
+  margin-top: 12rpx;
+  font-size: 22rpx;
+  color: #999;
+  line-height: 1.6;
+}
+
+/* ─── Custom UTC offset input ────────────────────────────── */
+.offset-input {
+  flex: 1;
+  font-size: 30rpx;
+  color: #333;
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
+/* ─── Gender selector ────────────────────────────────────── */
+.gender-row {
+  display: flex;
+  gap: 24rpx;
+}
+
+.gender-btn {
+  flex: 1;
+  text-align: center;
+  padding: 20rpx 0;
+  border-radius: 12rpx;
+  border: 1rpx solid #E8D8A0;
+  background: #FDF5E6;
+  font-size: 30rpx;
+  color: #666;
+  transition: all 0.2s;
+}
+
+.gender-btn--active {
+  background: #8B0000;
+  border-color: #8B0000;
+  color: #fff;
+}
+
+/* ─── Submit button ──────────────────────────────────────── */
+.btn-wrapper {
+  margin: 0 0 40rpx;
+}
+
+.submit-btn {
+  width: 100%;
+  height: 96rpx;
+  line-height: 96rpx;
+  font-size: 36rpx;
+  font-weight: bold;
+  letter-spacing: 8rpx;
+  background: linear-gradient(135deg, #8B0000, #C41E3A);
+  color: #FFD700;
+  border-radius: 48rpx;
+  border: none;
+  box-shadow: 0 8rpx 24rpx rgba(139, 0, 0, 0.3);
+}
+
+.submit-btn::after {
+  border: none;
+}
+
+/* ─── Tips card ──────────────────────────────────────────── */
+.tips-card {
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  box-shadow: 0 4rpx 24rpx rgba(139, 0, 0, 0.08);
+}
+
+.tips-title {
+  display: block;
+  font-size: 28rpx;
+  color: #8B0000;
+  font-weight: 600;
+  margin-bottom: 16rpx;
+}
+
+.tips-body {
+  font-size: 26rpx;
+  color: #666;
+  line-height: 1.8;
+}
