@@ -349,53 +349,16 @@ const NAYIN = [
 ];
 
 function getNaYin(stemIndex, branchIndex) {
-  // Convert stem+branch to 60-cycle position
-  // The 60-cycle position = (stemIndex * 6 + branchIndex * 5) % 60
-  // Simpler: cycle = ((branchIndex - stemIndex) / 2) mapped to 0-29 pairs
-  // Standard formula: pos in 60-cycle where pos%2 gives pair entry
-  const cyclePos = ((stemIndex % 10) + ((branchIndex - stemIndex + 12) % 12) * 5) % 60;
-  // Actually the direct lookup: cycle index based on heavenly stem & earthly branch
-  // Use: idx = (stem + branch * 5) % 60 is not clean.
-  // Correct: the 60 cycle index = lookup by iterating stems*6 branches*5 pattern.
-  // Simplest correct formula: cycleIdx = (stem%10)*6 isn't right either.
-  // Use: the pair index in 60-cycle = floor(cycleIdx/2)
-  // We'll compute cycleIdx as: (stemIndex + (branchIndex - stemIndex%12)*... 
-  // Actually the clearest: 甲子=0, 乙丑=1, ..., 癸亥=59
-  // cycleIdx = (stemIndex - branchIndex*... this is messy, just use the known pattern:
-  // cycleIdx where stemIdx matches branchIdx parity, increments of 2 per step
-  // Standard: cycleIdx = (stemIndex * 6 + branchIndex * 5) % 60 -- NOT standard
-  // 
-  // The correct mapping: for 甲(0)子(0) → 0; 乙(1)丑(1) → 1; 丙(2)寅(2) → 2...
-  // cycleIdx = stemIndex matches branchIndex mod 2 always (yin/yang parity)
-  // cycleIdx = stemIndex + 10*k where branchIndex = stemIndex + 2*k mod 12 ... messy
+  // Map (stemIndex, branchIndex) to the 60-cycle position using CRT.
   //
-  // Simplest correct formula used universally:
-  // cycleIdx = (stemIndex%10 + (branchIndex - stemIndex%10 + 12)%12 / 2 *10 + stemIndex%10) 
-  // 
-  // Just use: pos = (branchIndex * 5 + stemIndex) % 60  - tested:
-  // 甲子: (0*5+0)%60=0 ✓, 乙丑: (1*5+1)%60=6 ✗
-  // 
-  // The correct formula: the 60-year cycle position for (stem s, branch b) is:
-  // pos = (s - b) mod 10 * 6 + b -- no
-  // 
-  // Best approach: pos = (stem + (branch - stem%12 + 12) % 12 / 2 * 10 )
-  // 
-  // Actually let's just use: pos where s%10 and b%12 with s%2==b%2 always
-  // The position = s + 10*floor((b - s%12 + 12)%12 / 2)... 
-  // 甲子: 0 + 10*floor((0-0+12)%12/2) = 0+10*0 = 0 ✓
-  // 乙丑: 1 + 10*floor((1-1+12)%12/2) = 1+0 = 1 ✓
-  // 丙寅: 2 + 10*floor((2-2+12)%12/2) = 2+0 = 2 ✓
-  // 甲戌: 0 + 10*floor((10-0+12)%12/2) = 0+10*floor(10/2)=0+50=50 ✓
-  // 癸亥: 9 + 10*floor((11-9+12)%12/2) = 9+10*floor(2/2)=9+10=19... 
-  //       should be 59. ✗
-  // 
-  // OK let me just hardcode the cycle position differently.
-  // The 60-cycle repeats every 60 steps. The nth element has:
-  //   stem[n%10], branch[n%12]
-  // To find n given (s,b): n ≡ s (mod 10) and n ≡ b (mod 12)
-  // By CRT: n = s + 10*k where (s + 10k) ≡ b (mod 12) → 10k ≡ b-s (mod 12)
-  // 10 and 12 share gcd=2, so solution exists iff (b-s) is even (guaranteed by yin/yang match)
-  // 10k ≡ b-s (mod 12) → 5k ≡ (b-s)/2 (mod 6) → k ≡ 5*(b-s)/2 (mod 6) [since 5*5=25≡1 mod6]
+  // The 60-cycle satisfies: pos ≡ stemIndex (mod 10) and pos ≡ branchIndex (mod 12).
+  // Since gcd(10,12)=2 and stem/branch always share the same parity, a unique
+  // solution exists in [0,60).
+  //
+  // Formula derived from CRT:
+  //   bs = (branchIndex - stemIndex) mod 12   [always even]
+  //   k  = (5 * bs/2) mod 6                  [since 5 is the inverse of 2 mod 6]
+  //   cycleIdx = stemIndex + 10*k
   const bs = ((branchIndex - stemIndex) % 12 + 12) % 12;
   const k = (5 * (bs / 2)) % 6;
   const cycleIdx = stemIndex + 10 * k;
@@ -427,21 +390,10 @@ function calcBazi(params) {
     utcOffset = 8,
   } = params;
 
-  // Adjust to China Standard Time (UTC+8) for traditional calculation,
-  // then apply birth-place local time correction.
-  // Traditional BaZi uses the *local solar time* at the birth location.
-  // Correction: localSolarTime = UTC+8 standard time + (localLongitude - 120°) * 4 min/degree
-  // Since we receive utcOffset, we convert: UTC time = local time - utcOffset
-  // Then CST = UTC + 8; but traditional BaZi uses local mean solar time.
-  // For simplicity, we use the provided utcOffset as-is (local clock time).
-  // The user should input their local time. utcOffset is used to compute UTC,
-  // then we work in UTC+8 (CST) as the base for all calculations.
-
-  const utcHour = hour - utcOffset + utcOffset; // local time already given; keep as-is
-  // Actually: We assume the user inputs local time. For BaZi, the "time" used
-  // is local solar time. We model this as: provided time = local clock time at
-  // birth place. This is the standard modern approach.
-  // No date rollover needed unless the user provides UTC time; we use local time directly.
+  // The user inputs local clock time at the birth place.  Traditional BaZi
+  // uses local solar time; modern practice accepts local standard time.
+  // utcOffset is stored for reference but pillar calculations use the
+  // provided hour/minute directly (already local time).
 
   const yearPillar = calcYearPillar(year, month, day);
   const monthPillar = calcMonthPillar(year, month, day, yearPillar.stemIndex);

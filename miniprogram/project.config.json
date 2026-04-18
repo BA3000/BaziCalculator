@@ -42,6 +42,7 @@
   "libVersion": "2.19.4",
   "appid": "wx0000000000000000",
   "projectname": "BaziCalculator",
+  "desc": "Replace appid with your actual WeChat Mini Program AppID from https://mp.weixin.qq.com",
   "debugOptions": {
     "hidedInDevtools": []
   },
